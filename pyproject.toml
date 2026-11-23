@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "edgeped"
+version = "0.1.0"
+description = "CPU pedestrian detection and edge inference experiments"
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "numpy>=1.24,<3",
+    "opencv-python>=4.8,<5",
+    "pyyaml>=6,<7",
+    "torch>=2.6,<3",
+    "torchvision>=0.21,<1",
+    "ultralytics>=8.3,<9",
+]
+
+[project.scripts]
+edgeped = "edgeped.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "ruff>=0.11,<1"]
+
+[tool.uv]
+environments = ["sys_platform == 'win32' and platform_machine == 'AMD64'"]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+torchvision = { index = "pytorch-cpu" }
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]

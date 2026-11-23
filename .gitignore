@@ -1,0 +1,12 @@
+.venv/
+.uv-tool/
+.uv-python/
+.uv-cache/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+dist/
+outputs/
+*.pt
+/data/*
+!/data/README.md
